@@ -1,0 +1,40 @@
+name: 'Sphinx-rdt-wiki-action'
+description: 'This Github action allows to create a sphinx rdt wiki.'
+inputs:
+  source-dir:
+    type: string
+    description: 'The source directory where the rst files are located.'
+    required: true
+  target-dir:
+    type: string
+    description: 'The target directory where the html files should be generated.'
+    required: true
+  github-ref:
+    type: string
+    description: 'Github parameter.'
+    required: false
+    default: ${{ github.ref }}
+  github-actor:
+    type: string
+    description: 'Github parameter.'
+    required: false
+    default: ${{ github.actor }}
+  github-repository:
+    type: string
+    description: 'Github parameter.'
+    required: false
+    default: ${{ github.repository }}
+  github-secret:
+    type: string
+    description: 'Github parameter.'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.source-dir }}
+    - ${{ inputs.target-dir }}
+    - ${{ inputs.github-ref }}
+    - ${{ inputs.github-actor }}
+    - ${{ inputs.github-repository }}
+    - ${{ inputs.github-secret }}

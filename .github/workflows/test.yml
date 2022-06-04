@@ -1,0 +1,17 @@
+name: TestDeployment
+
+on:
+  workflow_dispatch:
+
+jobs:
+  Deploy-Sample-Wiki:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Create Wiki
+        uses: Shynixn/sphinx-rdt-wiki-action@v1.0.0
+        with:
+          source-dir: "docs/source"
+          target-dir: "docs/build"
+          github-secret: ${{ secrets.GITHUB_TOKEN }}

@@ -18,6 +18,7 @@ python3 -msphinx -M html $sourceFolder $targetFolder
 
 # Push the changes to Github
 cd $targetFolder
+git config --global --add safe.directory /github/workspace
 git add -f .
 git commit --message "Automatic CI Documentation."
 git push --quiet "https://$githubUserName:$githubAccessToken@github.com/$githubRepository.git" "HEAD:$githubBranchName"

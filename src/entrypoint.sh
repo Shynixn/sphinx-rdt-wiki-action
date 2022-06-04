@@ -17,8 +17,7 @@ rm -rf $targetFolder
 python3 -msphinx -M html $sourceFolder $targetFolder
 
 # Push the changes to Github
-git add -f $targetFolder
+cd $targetFolder
+git add -f .
 git commit --message "Automatic CI Documentation."
-echo "https://$githubUserName:$githubAccessToken@github.com/$githubRepository.git"
-echo "HEAD:$githubBranchName"
 git push --quiet "https://$githubUserName:$githubAccessToken@github.com/$githubRepository.git" "HEAD:$githubBranchName"
